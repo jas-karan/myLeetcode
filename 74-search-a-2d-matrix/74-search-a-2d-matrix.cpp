@@ -16,14 +16,19 @@ public:
         
         //ceiling using binary search
         int lo=0,hi=m-1;
+        int row = -1;
         while(lo<=hi){
             int mid = (lo+hi)/2;
-            if(matrix[mid][n-1]>=target) hi=mid-1;
+            if(matrix[mid][0]<=target&&target<=matrix[mid][n-1]){
+                row = mid;
+                break;
+            }
+            else if(matrix[mid][n-1] >target) hi=mid-1;
             else lo=mid+1;
         }
         
-        int row = lo;
-        if(row>m-1) row=m-1;
+        if(row == -1) return false;
+        
         lo=0,hi=n-1;
         
         //simple binary search
