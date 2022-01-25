@@ -22,7 +22,9 @@ public:
 //         sort(res.begin(), res.end());
         
 //         return res;
+// -----------------------------------------        
         
+        // first, we find index of x if present or else where it should be inserted
         int n = arr.size();
         int lo=0,hi=n-1;
         int ind=-1;
@@ -34,7 +36,9 @@ public:
         }
         //if x was not found then hi+1 will be insert position of x
         ind = ind==-1 ? hi+1:ind;
-        cout<<ind<<endl;
+       
+        
+        //now we use two pointers to find window of k elements
         lo = ind-1;
         hi = ind;
         while(lo>=0 && hi<n &&k>0){
