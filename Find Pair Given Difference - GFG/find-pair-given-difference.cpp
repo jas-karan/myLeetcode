@@ -29,15 +29,25 @@ int main()
 
 bool findPair(int arr[], int size, int n){
     //code
-    unordered_set<int>set;
+    // unordered_set<int>set;
     
-    for(int i=0;i<size;i++){
-        if(set.find(arr[i]-n)!=set.end() || set.find(arr[i]+n)!=set.end()){
-            return true;
-        }
-        else{
-            set.insert(arr[i]);
-        }
+    // for(int i=0;i<size;i++){
+    //     if(set.find(arr[i]-n)!=set.end() || set.find(arr[i]+n)!=set.end()){
+    //         return true;
+    //     }
+    //     else{
+    //         set.insert(arr[i]);
+    //     }
+    // }
+    
+    sort(arr,arr+size);
+    
+    int lo=0,hi=1;
+    
+    while(lo<size && hi<size){
+        if(arr[hi]-arr[lo]==n) return true;
+        else if(arr[hi]-arr[lo]<n) hi++;
+        else lo++;
     }
     
     return false;
