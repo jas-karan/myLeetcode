@@ -8,7 +8,7 @@ public:
         while(l<=h){
             int m = (l+h)/2;
             if(nums[m]==target){
-                f = m;
+                f = m;          //keep updating when it was last seen.
                 h = m-1;
             }
             else if(nums[m]<target) l=m+1;
