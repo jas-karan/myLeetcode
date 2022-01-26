@@ -9,7 +9,7 @@ using namespace std;
 class Solution{
 public:	
 	int findKRotation(int arr[], int n) {
-	    // code here
+	    
 	    //same as finding min ele (pivot ele) in sorted+rotated array
 	    
 	    int l=0,h=n-1;
