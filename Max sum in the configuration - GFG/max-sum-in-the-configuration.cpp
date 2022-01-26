@@ -47,6 +47,7 @@ int max_sum(int arr[],int n)
     //rotation sum = prev rotation sum - sum of array + (n)*(zero coeff ele)
     //zero coeff ele will be arr[0], arr[1], ...till arr[n-2]
     
+    // total n-1 ways we can rotate an array + original config = n configs total
     for(int i=0;i<n-1;i++){
         int next = curr-sum+(n*arr[i]);
         max_sum = max(max_sum,next);
