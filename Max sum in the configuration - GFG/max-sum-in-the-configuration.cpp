@@ -41,10 +41,10 @@ int max_sum(int arr[],int n)
     //coeff are decreasing by 1.
     //but for one element whose coeff is 0, it increases to n-1
     //decreasing coeff by one means subtracting the sum of array from current seq.
-    //but that will also make coeff of zero coeff element to -1;
+    //but that will also make coeff of (zero-coeff-element) to -1;
     //so we add n*(zero coeff ele)
     
-    //rotation sum = prev rotation sum - sum of array + (n)*(zero coeff ele)
+    //rotation sum = prev rotation sum - sum of array + (n)*(zero-coeff-ele)
     //zero coeff ele will be arr[0], arr[1], ...till arr[n-2]
     
     // total n-1 ways we can rotate an array + original config = n configs total
