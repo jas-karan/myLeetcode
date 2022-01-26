@@ -14,6 +14,10 @@ public:
         if(nums[0]<=nums[n-1]) return nums[0]; //if not rotated
         
         int l=0,h=n-1;
+        
+        // l<h is used when we use arr[l] or arr[h]
+        //l<=h is used when we want to return from loop
+        
         while(l<h){
             int m=(l+h)/2;
             
