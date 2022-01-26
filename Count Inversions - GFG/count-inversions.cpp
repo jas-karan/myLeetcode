@@ -12,18 +12,21 @@ class Solution{
     long long int inversionCount(long long arr[], long long N)
     {
         // Your Code Here
+        //take care of indices -l,h,m
+        // it is very easy.
         return mergeSort(0,N-1,arr);
         
     }
     
     long long mergeSort(int l,int h,long long *arr){
+        // think recursively
         if(l<h){
             int mid = (l+h)/2;
-            long long left = mergeSort(l,mid,arr);
-            long long right = mergeSort(mid+1,h,arr);
-            return left+right+merge(l,h,mid,arr);
+            long long left = mergeSort(l,mid,arr);  //get inversions from left
+            long long right = mergeSort(mid+1,h,arr); //get inversions from right
+            return left+right+merge(l,h,mid,arr);  //get inversions from merged left and right
         }
-        else{
+        else{   //if there is just one element (l==h) then zero inversions
             return 0;
         }
     }
