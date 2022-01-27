@@ -19,17 +19,16 @@ public:
         
         int speed;
         
-        //we use equality since value is present in search space
-        while(l<=h){
+        while(l<h){
             int m = l+(h-l)/2;
             
             if(possible(piles,m,hr)){
                 speed = m;   //keep updating last found 
-                h = m-1;
+                h = m;
             }
             else l = m+1;
         }
         
-        return speed;
+        return l;
     }
 };
