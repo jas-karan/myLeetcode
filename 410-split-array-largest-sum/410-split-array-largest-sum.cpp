@@ -1,3 +1,5 @@
+// --------- same as allocate minimum number of pages ---------------------------
+
 class Solution {
 public:
     bool possible(vector<int>arr, int m, int max_sum){
