@@ -11,7 +11,9 @@ public:
 	int countZeros(vector<vector<int>>A)
 	{
 		//similar to search in sorted matrix - two
+		//rows and cols are sorted
 		int n = A.size();
+		
 		int zeroes = 0;
 		int i=0,j=n-1;
 		//starting from top right corner
