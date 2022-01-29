@@ -39,6 +39,7 @@ long long int calculate(int a[], int m)
     sort(a,a+m);
     
     int f=0,l=0;
+    //count occurrence of every number and take nC2
     for(int i=1;i<m;i++){
         if(a[i]==a[i-1]) l=i;
         else{
