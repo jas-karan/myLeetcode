@@ -52,4 +52,6 @@ long long int calculate(int a[], int m)
     int n=l-f+1;
     pairs+=(n*(n-1)/2);
     return pairs;
+    
+    //we could have used freq array to count occurence that would have been O(n) space
 }
