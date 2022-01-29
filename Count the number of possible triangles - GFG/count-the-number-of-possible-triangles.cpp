@@ -17,10 +17,11 @@ class Solution
             int l=0,h=i-1;
             while(l<h){
                 if(arr[l]+arr[h]>target){
+                    //then for all the l<=j<h ,arr[j]+arr[h]>target
                     triangles+=(h-l);
                     h--;
                 }
-                else l++;
+                else l++;   //or increase the sum 
             }
         }
         
