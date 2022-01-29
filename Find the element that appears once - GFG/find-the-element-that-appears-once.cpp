@@ -16,7 +16,12 @@ public:
 	        
 	        //if mid is odd then second occurrence is at mid
 	        if(mid%2!=0 && a[mid]!=a[mid-1]){ele=a[mid]; h=mid-1;}
+	        
 	        else if(mid%2==0 && a[mid]!=a[mid+1]){ele=a[mid]; h=mid-1;}
+	        
+	        //if values are not matching then single appearing element has already occurred
+	        //or this may also be that element so keep updating
+	        
 	        else l=mid+1; 
 	    }
 	    return ele;
