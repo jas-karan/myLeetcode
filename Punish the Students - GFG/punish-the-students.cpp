@@ -13,13 +13,13 @@ class Solution{
         for(int i=0;i<n-1;i++){
             for(int j=0;j<n-i-1;j++){
                 if(roll[j]>roll[j+1]){
-                    swaps+=2;
+                    swaps++;
                     swap(roll[j],roll[j+1]);
                 }
             }
         }
         
-        int sum = -1*swaps;
+        int sum = -2*swaps;  //in an pair there are two students, have to subtract 1 for each
         for(int i=0;i<n;i++) sum+=marks[i];
         double classAvg = (double)sum/n;
         
