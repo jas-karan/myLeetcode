@@ -7,33 +7,34 @@ using namespace std;
 
 class Solution{
     public:
-    int lenOfLongSubarr(int A[],  int N, int K) 
+    int lenOfLongSubarr(int a[],  int n, int k) 
     { 
         //a b c : if sum from a to c is S and sum from a to b is S-k then sum from b to c is k
         //if sum becomes k it is the max length subarray with sum = k
         
-        // int length=0;
-        // unordered_map<int,int>mp;
-        // int sum=0;
-        // for(int i=0;i<n;i++){
-        //     sum+=a[i];
-        //     if(sum==k) length=i+1;
-        //     else if(mp.find(sum-k)!=mp.end()){
-        //         length=max(length,i-mp[sum-k]+1);
-        //     }
-        //     else mp[sum]=i;
-        // }
-        // return length;
-        int ln=0,sum=0;
-        map<int,int>m;
-        for(int i=0;i<N;i++)
-        {
-            sum+=A[i];
-            if(sum==K)ln=max(i+1,ln);
-            if(m.find(sum)==m.end())m[sum]=i;
-            if(m.find(sum-K)!=m.end())ln=max(ln,i-m[sum-K]);
+        int length=0;
+        unordered_map<int,int>mp;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=a[i];
+            if(sum==k) length=i+1;
+            else if(mp.find(sum-k)!=mp.end()){
+                length=max(length,i-mp[sum-k]);
+            }
+            if(mp.find(sum)==mp.end()) mp[sum]=i;
         }
-        return ln;
+        return length;
+        
+        // int ln=0,sum=0;
+        // map<int,int>m;
+        // for(int i=0;i<N;i++)
+        // {
+        //     sum+=A[i];
+        //     if(sum==K)ln=max(i+1,ln);
+        //     if(m.find(sum)==m.end())m[sum]=i;
+        //     if(m.find(sum-K)!=m.end())ln=max(ln,i-m[sum-K]);
+        // }
+        // return ln;
     } 
 
 };
