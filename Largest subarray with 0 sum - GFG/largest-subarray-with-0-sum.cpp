@@ -24,10 +24,10 @@ class Solution{
         for(int i=0;i<n;i++){
             sum+=a[i];
             if(sum==0) length=i+1;
-            else if(mp.find(sum)!=mp.end()){
+            if(mp.find(sum)!=mp.end()){
                 length=max(length,i-mp[sum]);
             }
-            else if(mp.find(sum)==mp.end()) mp[sum]=i;
+            if(mp.find(sum)==mp.end()) mp[sum]=i;
         }
         return length;
     }
