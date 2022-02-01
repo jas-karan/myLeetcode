@@ -9,8 +9,10 @@ class Solution{
     public:
     int lenOfLongSubarr(int a[],  int n, int k) 
     { 
-        //a b c : if sum from a to c is S and sum from a to b is S-k then sum from b to c is k
         //if sum becomes k it is the max length subarray with sum = k
+        //a b c : if sum from a to c is S and sum from a to b is S-k then sum from b to c is k
+        //else insert that sum only iff not present bcoz we want largest
+        //updating the sum index will shorten the subarray
         
         int length=0;
         unordered_map<int,int>mp;
@@ -25,16 +27,6 @@ class Solution{
         }
         return length;
         
-        // int ln=0,sum=0;
-        // map<int,int>m;
-        // for(int i=0;i<N;i++)
-        // {
-        //     sum+=A[i];
-        //     if(sum==K)ln=max(i+1,ln);
-        //     if(m.find(sum)==m.end())m[sum]=i;
-        //     if(m.find(sum-K)!=m.end())ln=max(ln,i-m[sum-K]);
-        // }
-        // return ln;
     } 
 
 };
