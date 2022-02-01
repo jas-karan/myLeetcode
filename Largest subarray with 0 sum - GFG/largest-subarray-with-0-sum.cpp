@@ -24,7 +24,7 @@ class Solution{
             else if(mp.find(sum)!=mp.end()){
                 length=max(length,i-mp[sum]);
             }
-            else mp[sum]=i;
+            else if(mp.find(sum)==mp.end()) mp[sum]=i;
         }
         return length;
     }
