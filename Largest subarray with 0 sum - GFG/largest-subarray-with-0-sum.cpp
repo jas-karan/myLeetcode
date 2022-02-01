@@ -12,8 +12,11 @@ class Solution{
     public:
     int maxLen(vector<int>&a, int n)
     {   
+        //if sum becomes zero it is the max length subarray with sum = 0 
         //a b c : if sum from a to c is same as sum from a to b then sum from b to c is zero
-        //if sum becomes zero it is the max length subarray with sum = 0
+        //else insert that sum only iff not present bcoz we want largest
+        //updating the sum index will shorten the subarray
+        
         
         int length=0;
         unordered_map<int,int>mp;
