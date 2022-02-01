@@ -21,6 +21,8 @@ class Solution{
             sum+=x;
             if(sum==0) count++;
             if(mp.find(sum)!=mp.end()) count+=mp[sum];
+            //does not matter whether the sum has already appeared or not
+            //we will increase count of sum
             mp[sum]++;
         }
         
