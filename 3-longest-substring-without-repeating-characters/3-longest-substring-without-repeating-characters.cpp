@@ -1,6 +1,10 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        //keep a window,
+        //once window has an element with freq>1
+        //shrink the window and update the length
+        
         unordered_map<int,int>window;
         int length=0;
         
