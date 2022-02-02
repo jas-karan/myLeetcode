@@ -10,7 +10,11 @@ using namespace std;
 class Solution{
   public:
     int longestKSubstr(string s, int K) {
-    // your code here
+        
+        //same as longest window without repeating characters
+        //but here we should have exactly k unique characters in window
+        //since we want exactly k unique chars so update length only then !!
+        
         int length=-1;
         unordered_map<int,int>window;
         
@@ -20,6 +24,7 @@ class Solution{
         while(r<s.length()){
             window[s[r]]++;
             
+            //shrink window if window has more than k unique
             while(l<r && window.size()>K){
                 window[s[l]]--;
                 if(window[s[l]]==0) window.erase(s[l]);
