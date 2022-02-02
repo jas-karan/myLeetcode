@@ -10,7 +10,7 @@ public:
         
         unordered_map<int,int>mp;
         for(char ch:t) mp[ch]++;
-        int matchCount = mp.size();
+        int reqCount = mp.size();
         
         unordered_map<int,int>window;
         int length=INT_MAX;
@@ -21,12 +21,16 @@ public:
         
         while(r<s.length()){
             window[s[r]]++;
+            
+            //increase the foundCount only iff char is in t && duplicates are also found
             if(mp.find(s[r])!=mp.end() && mp[s[r]]==window[s[r]]){
                 foundCount++;
             } 
             r++;
-            while(matchCount==foundCount && l<r){
-                if(length>r-l){
+            
+            //only iff all the chars of t are found, shrink the window
+            while(reqCount==foundCount && l<r){
+                if(length>r-l){  //update the current window
                     length=r-l;
                     smallest=s.substr(l,length);
                 }
