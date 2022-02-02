@@ -23,6 +23,9 @@ public:
         
 //         return length;
         
+        //----------- single pass - optimised ---------------
+        //instead of running l, store the index of last seen
+        
         unordered_map<char,int>mp;
         int length=0;
         
