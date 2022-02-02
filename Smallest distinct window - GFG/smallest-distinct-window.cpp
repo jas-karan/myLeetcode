@@ -23,14 +23,19 @@ class Solution{
         while(r<s.length()){
             window[s[r]]++;
             if(unique.find(s[r])!=unique.end()&&window[s[r]]==1) foundCount++;
+            //second condition is to avoid duplicates
+            
             r++;
             
+            //shrink window only if all the req count is found
             while(reqCount==foundCount && l<r){
                 if(length>r-l){
                      length=r-l;
                      smallest = s.substr(l,length);
                 }
                 window[s[l]]--;
+                
+                //if deleting the char makes its count in window 0, reduce the foundcount
                 if(unique.find(s[l])!=unique.end() && window[s[l]]==0) foundCount--;
                 l++;
             }
