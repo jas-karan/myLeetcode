@@ -63,5 +63,13 @@ public:
         //finding exactly = k is atmost k minus atmost (k-1)
         return atmost(nums,k)-atmost(nums,k-1);
         
+        //why 'atmost' case can be solved using sliding window -O(n)
+        //once we find a window with k odd elements
+        //we can just add size of window to result- which will be
+        //no. of subarrays in that window but
+        //with atmost k odd elements not exactly k odd elements
+        //to find exactly k odd windows, we have to consider all the
+        //subarrays one by one .
+        
     }
 };
