@@ -19,5 +19,7 @@ public:
         }
         
         return count;
+        
+        //we could have stored a+b+c or any other trio but that'd make O(n^3)
     }
 };
