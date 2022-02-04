@@ -53,7 +53,6 @@ public:
         
         for(auto g:group){
             rabbits+=g.first;
-            cout<<g.first<<" "<<g.second<<endl;
         }
         
         return rabbits;
