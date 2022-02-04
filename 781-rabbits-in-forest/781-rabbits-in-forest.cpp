@@ -13,25 +13,47 @@ public:
         //since group of 2 is full, we create another group of 2
         //total 2+3+2 = 7 rabits are there among which 3 rabits have interviewed
         
-        unordered_map<int,vector<int>>group;
+//         unordered_map<int,vector<int>>group;
         
+//         for(int a:answers){
+//             if(group.find(a+1)==group.end()){
+//                 group[a+1].push_back(1);  //make the group
+//             }
+//             else{
+//                 int sz = group[a+1].size();
+//                 if(group[a+1][sz-1]==a+1){
+//                     group[a+1].push_back(1); //create one more group of similar size
+//                 }
+//                 else group[a+1][sz-1]++; //fill the seat
+//             }
+//         }
+        
+//         int rabbits=0;
+        
+//         for(auto g:group){
+//             rabbits+=(g.first*g.second.size());
+//         }
+        
+//         return rabbits;
+        
+        //optimise memory
+        
+        unordered_map<int,int>group;
+        int rabbits= 0;
         for(int a:answers){
-            if(group.find(a+1)==group.end()){
-                group[a+1].push_back(1);  //make the group
-            }
+            if(group.find(a+1)==group.end()) group[a+1]=1;
             else{
-                int sz = group[a+1].size();
-                if(group[a+1][sz-1]==a+1){
-                    group[a+1].push_back(1); //create one more group of similar size
+                if(group[a+1]==a+1){
+                    rabbits+=a+1;
+                    group[a+1]=1;
                 }
-                else group[a+1][sz-1]++; //fill the seat
+                else group[a+1]++;
             }
         }
         
-        int rabbits=0;
-        
         for(auto g:group){
-            rabbits+=(g.first*g.second.size());
+            rabbits+=g.first;
+            cout<<g.first<<" "<<g.second<<endl;
         }
         
         return rabbits;
