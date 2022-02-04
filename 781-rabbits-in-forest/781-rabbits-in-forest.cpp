@@ -44,7 +44,7 @@ public:
             if(group.find(a+1)==group.end()) group[a+1]=1;
             else{
                 if(group[a+1]==a+1){
-                    rabbits+=a+1;
+                    rabbits+=a+1;  //store the group and reinitialise
                     group[a+1]=1;
                 }
                 else group[a+1]++;
