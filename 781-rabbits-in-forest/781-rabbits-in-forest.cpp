@@ -17,14 +17,14 @@ public:
         
         for(int a:answers){
             if(group.find(a+1)==group.end()){
-                group[a+1].push_back(1);
+                group[a+1].push_back(1);  //make the group
             }
             else{
                 int sz = group[a+1].size();
                 if(group[a+1][sz-1]==a+1){
-                    group[a+1].push_back(1);
+                    group[a+1].push_back(1); //create one more group of similar size
                 }
-                else group[a+1][sz-1]++;
+                else group[a+1][sz-1]++; //fill the seat
             }
         }
         
