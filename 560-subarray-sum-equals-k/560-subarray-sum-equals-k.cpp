@@ -1,15 +1,18 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        int count=0;
-        int sum=0;
-        unordered_map<int,int>sum_count;
+        //we store the freq of sum in map
         
-        for(int x:nums){
-            sum += x;
+        unordered_map<int,int>freq;
+        int sum = 0;
+        int count = 0;
+        
+        for(int i:nums){
+            sum+=i;
+            
             if(sum==k) count++;
-            if(sum_count.find(sum-k)!=sum_count.end()) count+=sum_count[sum-k];
-            sum_count[sum]++;
+            if(freq.find(sum-k)!=freq.end()) count+=freq[sum-k];
+            freq[sum]++;
         }
         
         return count;
