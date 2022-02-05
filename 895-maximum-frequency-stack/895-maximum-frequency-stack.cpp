@@ -29,6 +29,7 @@ public:
         return ele;
         
         //maxFreq remains same of there are still eles with that maxFreq
+        //why we need freq map? in order to put val to right freq stack!
     }
 };
 
