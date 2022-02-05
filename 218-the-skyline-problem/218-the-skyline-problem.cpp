@@ -40,6 +40,7 @@ public:
              //if either we go up or down
             if(curr_height!=max_height){
                 
+                //x remain same, h will be new height (increased or decreased)
                 ans.push_back({x,max_height});
                 curr_height=max_height;
             }
