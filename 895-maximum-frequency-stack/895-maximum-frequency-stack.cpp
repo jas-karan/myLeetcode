@@ -2,7 +2,7 @@ class FreqStack {
 public:
     //we need to store num with its frequency
     //we need to maintain maxfreq, to pop out
-    //the only problem is what is two ele has maxfreq => need nearest to top element!
+    //the only problem is what if two ele has maxfreq => need nearest to top element!
     //we can store ele with freq f in stack of that freq f
     
     unordered_map<int,int>freq;
@@ -27,6 +27,8 @@ public:
             maxFreq--;
         }
         return ele;
+        
+        //maxFreq remains same of there are still eles with that maxFreq
     }
 };
 
