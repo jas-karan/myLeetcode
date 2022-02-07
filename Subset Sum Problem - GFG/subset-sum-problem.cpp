@@ -28,7 +28,7 @@ public:
     bool isSubsetSum(int N, int arr[], int sum){
         // return helper(arr,N,sum);
         
-        //in rec call, we are looking for whether with i-1 elements is subset with sum possible?
+        //in rec call, we are looking for whether with i elements is subset with sum possible?
         
         //store this in dp array
         
