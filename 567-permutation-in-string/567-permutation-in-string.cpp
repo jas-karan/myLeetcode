@@ -1,15 +1,8 @@
 class Solution {
 public:
-    bool areSame(string a,string b,int l,int r){
-        int freq[26]={0};
-        for(int i=0;i<a.length();i++){
-            freq[a[i]-'a']++;
-        }
-        for(int i=l;i<=r;i++){
-            freq[b[i]-'a']--;
-        }
+    bool areSame(int a[],int b[]){
         for(int i=0;i<26;i++){
-            if(freq[i]!=0) return false;
+            if(a[i]!=b[i]) return false;
         }
         return true;
     }
@@ -18,10 +11,17 @@ public:
         if(s2.length()<s1.length()) return false;
         
         int n = s1.length();
-        int l = 0;
-        for(int r=n-1;r<s2.length();r++){
-            if(areSame(s1,s2,l,r)) return true;
-            l++;
+        int a[26]={0};
+        int b[26]={0};
+        
+        for(int i=0;i<n;i++) a[s1[i]-'a']++;
+        for(int i=0;i<n;i++) b[s2[i]-'a']++;
+        if(areSame(a,b)) return true;
+        
+        for(int i=n;i<s2.length();i++){
+            b[s2[i]-'a']++;
+            b[s2[i-n]-'a']--;
+            if(areSame(a,b)) return true;
         }
         
         return false;
