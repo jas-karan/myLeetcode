@@ -12,9 +12,11 @@ class Solution{
   public:
     int cutRod(int prices[], int n) {
         
-        vector<int>dp(n+1);
-        dp[0]=0;
-        for(int i=1;i<=n;i++) dp[i]=prices[i-1];
+        //for all the size from 0 to n that we can cut it
+        //prices of that cut + cutRod(rest of rod)
+        //store the rec solution in dp array
+        
+        vector<int>dp(n+1,0);
         
         for(int i=1;i<=n;i++){
             for(int j=i;j>=0;j--){
