@@ -69,7 +69,7 @@ public:
                     if(isPal[i][j]){
                         dp[j]=min(dp[j],1+dp[i-1]);
                     }
-            }
+                }
             }
         }
         
