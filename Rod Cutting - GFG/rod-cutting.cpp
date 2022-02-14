@@ -18,8 +18,9 @@ class Solution{
         
         vector<int>dp(n+1,0);
         
-        for(int i=1;i<=n;i++){
-            for(int j=i;j>=0;j--){
+        for(int i=1;i<=n;i++){ //for the current rod length
+        
+            for(int j=i;j>=0;j--){ //lengths of cut possible
                 dp[i]=max(dp[i],prices[j-1]+dp[i-j]);
             }
         }
