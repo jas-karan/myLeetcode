@@ -12,6 +12,9 @@ public:
         int n1 = text1.length();
         int n2 = text2.length();
         
+        //----memoization gave TLE error----
+        //dp[i][j] -> lcs if text1 of length i and text2 of length j
+        
         int dp[n1+1][n2+1];
         
         for(int i=0;i<=n1;i++) dp[i][0]=0;
