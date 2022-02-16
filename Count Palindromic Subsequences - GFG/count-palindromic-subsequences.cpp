@@ -15,6 +15,15 @@ class Solution{
         //two char string for eg. "ab"- has 4 possible sequences - "","b" ,"a","ab"
         //if two chars are equal => count is 3, else 2
         
+        //for rest of length substrings =>
+        //if s[i]==s[j] => add s[i] to s(i+1..j-1) + add s(i+1,..j-1) to s[j] + add both s[i]and s[j]
+        //but when we take first two only,, count of palindromes when both s[i]and s[j] are added
+        //will already be counted.. (remember we are storing count of *subsequences*)
+        //we have to add 1 --for subsequence = "s[i]s[j]"
+        
+        //if s[i]!=s[j] => exclude s[i] + exclude s[j] - (count of middle part)
+        //because added two times with s[i] and s[j];
+        
         int n = s.length();
         long long int dp[n][n];
         
