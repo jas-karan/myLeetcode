@@ -9,6 +9,10 @@ class Solution {
 		    // we have to find 2 common longest sequences such that index of a char in one
 		    //is different from index of corresponding char in second.
 		    
+		    //so simply find LCS of s and s 
+		    //but that will be the whole string
+		    //no! here we check if chars are equal and are not at same index !!
+		    
 		    int n = s.length();
 		    int dp[n+1][n+1];
 		    for(int i=0;i<=n;i++){
