@@ -23,8 +23,9 @@ public:
             for(int j=0;j<grid[0].size();j++){
                 if(t[i][j]<0){  //candidate of border
                     if(i==0 || j==0 || i==grid.size()-1 || j==grid[0].size()-1)
-                        grid[i][j]=color;
-                    else if(t[i+1][j]>0 || t[i-1][j]>0 || t[i][j+1]>0 || t[i][j-1]>0) grid[i][j]=color;
+                        grid[i][j]=color;  //default border
+                    else if(t[i+1][j]>0 || t[i-1][j]>0 || t[i][j+1]>0 || t[i][j-1]>0)
+                        grid[i][j]=color;  //if atleast one of neighbor is not component part
                 }
             }
         }
