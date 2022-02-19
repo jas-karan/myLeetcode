@@ -12,6 +12,9 @@ public:
     }
     
     int numEnclaves(vector<vector<int>>& grid) {
+        //do dfs from boundary 1's
+        //then simpply count 1's that are not visited
+        
         int m = grid.size(), n = grid[0].size();
         for(int i=0;i<m;i++){
             if(grid[i][0]==1) helper(grid,i,0);
