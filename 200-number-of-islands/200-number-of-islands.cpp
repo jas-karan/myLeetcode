@@ -1,3 +1,13 @@
+//what if only distinct islands were to be find?
+//distinct by structure
+//then i have to store structures in set
+//and return set size
+//structure for [[1,1],[1,0]] can be "xrd" (x then right then down)
+//but [[1,1],[0,1]] will also be "xrd" ,but they are different
+//so we have to also indicate backtrack
+//structure for [[1,1],[1,0]] can be "xrBdBB" (x then right then backtrack and so on)
+
+
 class Solution {
 public:
     void helper(vector<vector<char>>&grid, int i,int j){
