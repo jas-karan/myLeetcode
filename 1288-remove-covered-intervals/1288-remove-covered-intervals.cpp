@@ -7,6 +7,11 @@ public:
     int removeCoveredIntervals(vector<vector<int>>& intervals) {
         int n = intervals.size();
         sort(intervals.begin(), intervals.end(),comp);
+        //sort by start points,
+        //if equal then decrease by end points
+        //as in that case high end points will cover smaller ones
+        
+        //now just check if intervals end point is less than maximum endpoint so far
         
         int covered = 0;
         int max_end = intervals[0][1];
