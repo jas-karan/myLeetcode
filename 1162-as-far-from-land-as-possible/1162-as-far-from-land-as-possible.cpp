@@ -19,24 +19,29 @@ public:
             }
         }
         
-        int dist = -1;
+        if(q.size()==0 || q.size()==n*n) return -1;
+        
+        int levels = -1;
         while(!q.empty()){
-            int i = q.front().first;
-            int j = q.front().second;
-            q.pop();
+            int sz = q.size();
+            levels++;
+            while(sz--){
+                int i = q.front().first;
+                int j = q.front().second;
+                q.pop();
             
-            for(int d=0;d<4;d++){
-                int i_ = i+dir[d][0];
-                int j_ = j+dir[d][1];
+                for(int d=0;d<4;d++){
+                    int i_ = i+dir[d][0];
+                    int j_ = j+dir[d][1];
                 
-                if(i_>=0 && j_>=0 && i_<n && j_<n && grid[i_][j_]==-1){
-                    grid[i_][j_]=grid[i][j]+1;
-                    q.push({i_,j_});
-                    dist = max(dist, grid[i_][j_]);
+                    if(i_>=0 && j_>=0 && i_<n && j_<n && grid[i_][j_]==-1){
+                        grid[i_][j_]=grid[i][j]+1;
+                        q.push({i_,j_});
+                    }
                 }
             }
         }
         
-        return dist;
+        return levels;
     }
 };
