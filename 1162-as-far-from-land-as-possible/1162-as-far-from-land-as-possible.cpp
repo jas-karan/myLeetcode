@@ -1,5 +1,8 @@
 class Solution {
 public:
+    //similar to zero-one matrix or rotten oranges
+    //BFS, keep updating distances, initially put into queue 0 distance cells
+    
     int dir[4][2] = {{1,0},{0,1},{-1,0},{0,-1}};
     
     int maxDistance(vector<vector<int>>& grid) {
