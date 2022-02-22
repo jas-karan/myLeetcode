@@ -19,20 +19,19 @@ class Solution
 	    }
 	    sort(arr.begin(), arr.end());
 	    
-	    vector<bool>vis(n,false);
 	    int swaps = 0;
 	    
+	    //i is new pos, arr[i].second is old pos
+	    
 	    for(int i=0;i<n;i++){
-	        if(arr[i].second==i || vis[i]==true) continue;
-	        
-	        int c_len = 0;
-	        int j = i;
-	        while(vis[j]==false){
-	            vis[j]=true;
-	            c_len++;
-	            j=arr[j].second;
+	        int num = arr[i].first;
+	        int idx= arr[i].second;
+	        if(i!=idx){
+	            //not in position
+	            swaps++;
+	            swap(arr[i],arr[idx]);
+	            i--; //what if that is also not correct ele to be here
 	        }
-	        swaps+=c_len-1;
 	    }
 	    
 	    return swaps;
