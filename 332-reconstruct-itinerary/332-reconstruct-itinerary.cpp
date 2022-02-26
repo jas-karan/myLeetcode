@@ -11,7 +11,7 @@ public:
             dfs(nbd);
         }
         
-        ans.push_back(src);
+        ans.push_back(src); //dest node will be first node in ans array
     }
     
     vector<string> findItinerary(vector<vector<string>>& tickets) {
