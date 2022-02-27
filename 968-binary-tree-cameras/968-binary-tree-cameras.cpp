@@ -16,10 +16,10 @@ public:
     int helper(TreeNode* root){
         if(root == NULL) return 1;  //for null => already covered so no new camera will be installed
         
-        //does left or right need camera then i have to install camera on this node
         int l = helper(root->left);
         int r = helper(root->right);
         
+        //does left or right need camera then i have to install camera on this node
         if(l==-1 || r==-1){
             cameras++;
             return 0;  //since i installed a camera, so i have a camera
