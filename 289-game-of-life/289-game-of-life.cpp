@@ -34,7 +34,7 @@ public:
 	return liveNeighbours;
 }
 void gameOfLife(vector<vector<int>>& board) {
-	vector<vector<int>> curr = board;
+	vector<vector<int>> curr = board; //since all ops are simultaneous.. so store the board
 	int m = board.size();
 	int n = board[0].size();
 	for(int i = 0; i<m; i++) {
