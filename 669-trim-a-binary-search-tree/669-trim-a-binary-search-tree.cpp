@@ -17,10 +17,10 @@ public:
             root->left = trimBST(root->left,low,high);
             root->right = trimBST(root->right,low,high);
         }
-        else if(root->val<low){
+        else if(root->val<low){ //then whole left subtree would be trimmed
             return trimBST(root->right,low,high);
         }
-        else return trimBST(root->left,low,high);
+        else return trimBST(root->left,low,high);  //whole right subtree would be trimmed
         
         return root;
     }
