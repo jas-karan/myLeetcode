@@ -33,6 +33,8 @@ public:
     void recoverTree(TreeNode* root) {
         // The first element is always larger than its next one while the second element is always smaller than its previous one.
         
+        //the first will be updated only once but second can be updated several times
+        
         traverse(root);
         
         swap(first->val,second->val);
