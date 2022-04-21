@@ -29,10 +29,7 @@ public:
     double findMedian() {
         
         double median;
-        if(p1.size()>p2.size()) median = p1.top();
-        else{
-            median = (p1.top()+p2.top())/2.0;
-        }
+        median = (p1.size()>p2.size())?p1.top():(p1.top()+p2.top())/2.0;
         return median;
     }
 };
