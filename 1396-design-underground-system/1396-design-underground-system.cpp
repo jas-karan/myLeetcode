@@ -11,8 +11,8 @@ public:
     
     void checkOut(int id, string stationName, int t) {
         string s = in[id].first+"-"+stationName;
-        
         trip[s].push_back(t-(in[id].second));
+        in.erase(id);
     }
     
     double getAverageTime(string startStation, string endStation) {
