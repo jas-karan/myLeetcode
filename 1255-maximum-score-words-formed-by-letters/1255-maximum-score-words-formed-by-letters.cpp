@@ -23,8 +23,6 @@ public:
         
         int b = call(i+1,words,mp,score);
         
-        mp = temp;
-        
         return max(a,curr+b);
     }
     
