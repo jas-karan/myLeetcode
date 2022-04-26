@@ -7,6 +7,8 @@ public:
     int minCostConnectPoints(vector<vector<int>>& points) {
         //make graph and find minimum spanning tree
         
+        //graph -> nodes as point number and edge weight as distance between nodes
+        
         int n = points.size();
         
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>>pq;
