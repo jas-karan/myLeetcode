@@ -4,13 +4,15 @@ public:
     
     void helper(vector<string>&res, string curr, string s){
         if(s.length()==0){
+            curr.pop_back();  //last space removal
             res.push_back(curr);
             return;
         }
         
         for(int i=0;i<s.length();i++){
-            if(dict.find(s.substr(0,i+1)) != dict.end()){
-                helper(res,curr+s.substr(0,i+1)+" ",s.substr(i+1));
+            string temp = s.substr(0,i+1);
+            if(dict.find(temp) != dict.end()){
+                helper(res,curr+temp+" ",s.substr(i+1));
             }
         }
         
@@ -24,7 +26,6 @@ public:
         
         helper(res,curr,s);
         
-        for(string&w:res) w=w.substr(0,w.length()-1);
         return res;
     }
 };
