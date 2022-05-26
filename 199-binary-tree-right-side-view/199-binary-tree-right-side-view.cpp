@@ -15,6 +15,7 @@ public:
         if(!root) return;
         
         if(res.size()<level) res.push_back(root->val);
+        //res.size() => levels covered if >level that means we have already taken a node from that level
         
         helper(level+1,root->right,res);
         helper(level+1,root->left,res);
