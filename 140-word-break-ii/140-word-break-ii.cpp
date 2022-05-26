@@ -8,9 +8,9 @@ public:
             res.push_back(curr);
             return;
         }
-        
+        string temp = "";
         for(int i=0;i<s.length();i++){
-            string temp = s.substr(0,i+1);
+            temp+=s[i];
             if(dict.find(temp) != dict.end()){
                 helper(res,curr+temp+" ",s.substr(i+1));
             }
