@@ -6,24 +6,19 @@ public:
         int n = a.size();
         
         for(int i=0;i<n;i++){
-            bool flag = false;
             
-            while(!st.empty() && (st.top()>0 && a[i]<0)){
-                if(abs(st.top())==abs(a[i])){
-                    st.pop();
-                    flag=true;
-                    break;
-                }
-                else if(abs(st.top())<abs(a[i])){
-                    st.pop();
-                }
-                else{
-                    flag = true;
-                    break;
-                }
+            while(!st.empty() && (st.top()>0 && a[i]<0) && abs(st.top())<abs(a[i])){
+                st.pop();
             }
             
-            if(!flag) st.push(a[i]);
+            if(!st.empty() && (st.top()>0 && a[i]<0) && abs(st.top())==abs(a[i])){
+                st.pop();
+            }
+            
+            else if(st.empty() || !(st.top()>0 && a[i]<0)){
+                st.push(a[i]);
+            }
+            
         }
         
         vector<int>res(st.size());
