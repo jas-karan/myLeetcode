@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& a) {
-        vector<int>res;
+        
         stack<int>st;
         int n = a.size();
         
@@ -26,12 +26,13 @@ public:
             if(!flag) st.push(a[i]);
         }
         
-        while(!st.empty()){
-            res.push_back(st.top());
+        vector<int>res(st.size());
+        
+        for(int i=st.size()-1;i>=0;i--){
+            res[i]=st.top();
             st.pop();
         }
         
-        reverse(res.begin(),res.end());
         return res;
     }
 };
