@@ -14,11 +14,15 @@ public:
         if( prev >= a[i] && j >= b.size() )
             return mx_val;
         
-        if(dp[i][j] == 0) dp[i][j] = j < b.size() ? 1 + solve(a,b,i+1,b[j]):mx_val ;
-        // if prev elemnt of array a is smaller than next than no need of conversion 
+        if(dp[i][j] == 0){
+             dp[i][j] = j < b.size() ? 1 + solve(a,b,i+1,b[j]):mx_val ;
+            // if prev elemnt of array a is smaller than next than no need of conversion
+            
+            if(prev < a[i])
+                dp[i][j] = min(dp[i][j] , solve(a,b,i+1,a[i]));
+        } 
         
-        if(prev < a[i])
-            dp[i][j] = min(dp[i][j] , solve(a,b,i+1,a[i]));
+        
         
         return dp[i][j];
     }
