@@ -53,7 +53,7 @@ public:
             if(w.length()>0 && canBreak(w)){
                 res.push_back(w);
             }
-            map.insert(w);
+            map.insert(w);  //at the time of breaking, there are only shorter words in map
         }
         
         return res;
