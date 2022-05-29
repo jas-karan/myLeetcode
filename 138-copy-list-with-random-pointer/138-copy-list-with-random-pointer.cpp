@@ -17,30 +17,61 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        unordered_map<Node*,Node*>copy;
+//         unordered_map<Node*,Node*>copy;
         
-        Node* crawl = head, *newHead= NULL, *prev = NULL;
+//         Node* crawl = head, *newHead= NULL, *prev = NULL;
         
-        while(crawl){
-            Node*curr = new Node(crawl->val);
-            if(newHead==NULL) newHead=curr;
-            if(prev!=NULL) prev->next=curr;
+//         while(crawl){
+//             Node*curr = new Node(crawl->val);
+//             if(newHead==NULL) newHead=curr;
+//             if(prev!=NULL) prev->next=curr;
             
-            copy[crawl]=curr;
-            prev=curr;
-            crawl=crawl->next;
+//             copy[crawl]=curr;
+//             prev=curr;
+//             crawl=crawl->next;
+//         }
+//         if(prev) prev->next=NULL;
+        
+//         crawl=head;
+//         while(crawl){
+//             if(crawl->random){
+//                 copy[crawl]->random = copy[crawl->random];
+//             }
+//             else copy[crawl]->random =NULL;
+            
+//             crawl = crawl->next;
+//         }
+        
+//         return newHead;
+        
+        //with no extra space-------->
+        if(head==NULL) return NULL;
+        
+        Node*crawl = head;
+        while(crawl){
+            Node*copy = new Node(crawl->val);
+            copy->next = crawl->next;
+            crawl->next = copy;
+            crawl=copy->next;
         }
-        if(prev) prev->next=NULL;
         
         crawl=head;
+        
         while(crawl){
-            if(crawl->random){
-                copy[crawl]->random = copy[crawl->random];
-            }
-            else copy[crawl]->random =NULL;
-            
-            crawl = crawl->next;
+            crawl->next->random = crawl->random? crawl->random->next:NULL;
+            crawl=crawl->next->next;
         }
+        
+        Node*newHead = head->next;
+        crawl=head;
+        
+        while(crawl){
+            Node*copy = crawl->next;
+            crawl->next=copy->next;
+            copy->next = crawl->next? crawl->next->next: NULL;
+            crawl=crawl->next;
+        }
+        
         
         return newHead;
     }
