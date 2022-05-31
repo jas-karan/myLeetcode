@@ -3,9 +3,12 @@ public:
     unordered_set<int>vis;
     
     void dfs(vector<vector<int>>&graph, int src){
+        
+        if(vis.find(src)!=vis.end()) return;
         vis.insert(src);
+        
         for(int j=0;j<graph.size();j++){
-            if(graph[src][j] && vis.find(j)==vis.end()){
+            if(graph[src][j]){
                 dfs(graph,j);
             }
         }
