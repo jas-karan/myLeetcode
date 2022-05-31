@@ -23,6 +23,8 @@ public:
         if(n<=2) return true;
         
         for(int i=0;i<n;i++) ind[s[i]]=i;
+        //using map to store indices 
+        //indices reqd for dp array
         
         vector<vector<int>> dp(n,vector<int>(1000,-1));
         return dfs(1,1,dp,s[n-1]);
