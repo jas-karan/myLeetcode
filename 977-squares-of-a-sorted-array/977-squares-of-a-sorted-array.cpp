@@ -7,9 +7,8 @@ public:
         
         for(int i=0;i<sz;i++){
             if(nums[i]<0) n=i;
-            if(nums[sz-i-1]>=0) p=sz-i-1;
         }
-        
+        p=n+1;
         
         while(n>=0 && p<sz){
             if(abs(nums[p])<=abs(nums[n])){
