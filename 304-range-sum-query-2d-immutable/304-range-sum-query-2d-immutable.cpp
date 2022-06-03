@@ -5,8 +5,10 @@ private:
 public:
     NumMatrix(vector<vector<int>> &matrix) {
         row = matrix.size();
-        col = row>0 ? matrix[0].size() : 0;
+        col = matrix[0].size();
+        
         sums = vector<vector<int>>(row+1, vector<int>(col+1, 0));
+        
         for(int i=1; i<=row; i++) {
             for(int j=1; j<=col; j++) {
                 sums[i][j] = matrix[i-1][j-1] + 
