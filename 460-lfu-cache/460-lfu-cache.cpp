@@ -57,7 +57,7 @@ public:
             m_counts[key] = 0;
             m_lowestFrequency = 0;
             m_countKeyMap[m_counts[key]].push_front(key);
-            m_values[key].itr = m_countKeyMap[0].begin();
+            m_values[key].itr = m_countKeyMap[m_counts[key]].begin();
         }
         //Just update value and frequency
         else
