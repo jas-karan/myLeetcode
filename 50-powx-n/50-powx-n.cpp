@@ -1,19 +1,21 @@
 class Solution {
 public:
     double myPow(double x, int n) {
-        if(x==0) return 0;
-        if(x==1) return 1;
-        if(n==0) return 1;
-        
-        int n1 = n/2;
         if(n<0){
             x = 1/x;
-            n1*=-1;
+            n = abs(n);
         }
+        if(n==0) return 1;
+        if(n==1) return x;
         
-        double sol = myPow(x,n1);
-        sol = sol*sol;
-        if(n%2!=0) sol*=x;
+        double sol = 0.0;
+        if(n%2==0){
+            sol = myPow(x,n/2);
+            sol = sol*sol;
+        }
+        else{
+            sol = x*myPow(x,n-1);
+        }
         
         return sol;
     }
