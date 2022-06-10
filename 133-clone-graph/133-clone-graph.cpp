@@ -20,20 +20,21 @@ public:
 */
 
 class Solution {
-public:
-    unordered_map<Node*,Node*>mp;
+private: unordered_map<Node*,Node*>copy;
     
+public:
     Node* cloneGraph(Node* node) {
-        if(!node) return node;
+        if(node == NULL) return NULL;
         
-        if(mp.find(node)==mp.end()){
-            mp[node] = new Node(node->val,{});
-            
-            for(Node* nbd:node->neighbors){
-                mp[node]->neighbors.push_back(cloneGraph(nbd));
-            }
+        if(copy.find(node) != copy.end()) return copy[node];
+        
+        Node* currCopy = new Node(node->val,node->neighbors);
+        copy[node] = currCopy;
+        
+        for(int i=0;i<node->neighbors.size(); i++){
+            currCopy->neighbors[i] = cloneGraph(node->neighbors[i]);
         }
         
-        return mp[node];
+        return currCopy;
     }
 };
