@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    vector<int>nums;
+    int sum = 0;
     
     void dfs(TreeNode*root,int n){
         
@@ -21,7 +21,7 @@ public:
         n = n*10 + root->val;
         
         if(root->left==NULL && root->right==NULL){
-           nums.push_back(n); 
+           sum += n; 
         }
         
         dfs(root->left,n);
@@ -31,9 +31,6 @@ public:
     
     int sumNumbers(TreeNode* root) {
         dfs(root,0);
-        
-        int sum = 0;
-        for(int i:nums) sum+=i;
         
         return sum;
     }
