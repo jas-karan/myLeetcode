@@ -40,11 +40,15 @@ public:
 
 	for(int i=1; i<n; i++) {
 		if(nums1[i]>nums1[i-1] && nums2[i]>nums2[i-1]) {
+            //if we want to keet at i, then we should not swap at i-1 either
 			keep[i]=keep[i-1];
+            //if we want to swap here, then should have swapped at i-1 too, otherwise disturb the order
 			swap[i]=swap[i-1]+1;
 		} 
 		if(nums1[i]>nums2[i-1] && nums2[i]>nums1[i-1]) {
+            //if you wanna keep then swap at i-1
 			keep[i]=min(swap[i-1],keep[i]);
+            //if you wanna swap then keep at i-1
 			swap[i]=min(keep[i-1]+1,swap[i]);
 		}
 	}
