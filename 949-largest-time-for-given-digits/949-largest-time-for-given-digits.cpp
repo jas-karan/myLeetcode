@@ -13,6 +13,7 @@ public:
             res = (stoi(hours) <= 23 && stoi(minutes) <= 59) ? (hours + ":" + minutes) : res;
             
         } while(next_permutation(A.begin(), A.end()));
+        
         return res;
     }
 };
