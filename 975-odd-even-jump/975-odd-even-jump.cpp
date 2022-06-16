@@ -17,8 +17,8 @@ public:
         int res =1;
         
         for(int i=n-2;i>=0;i--){
-            auto h = map.lower_bound(arr[i]);
-            auto l = map.upper_bound(arr[i]);
+            auto h = map.lower_bound(arr[i]);  //lowerbound ->notlessthan
+            auto l = map.upper_bound(arr[i]);  //greater element so, -1 for smaller
             
             if(h!=map.end()) higher[i] = lower[h->second];
             if(l!=map.begin()) lower[i] = higher[(--l)->second];
