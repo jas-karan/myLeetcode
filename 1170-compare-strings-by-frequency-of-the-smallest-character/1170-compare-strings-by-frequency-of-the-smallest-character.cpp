@@ -31,7 +31,7 @@ public:
 //     }
     
     vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {
-        vector<int> fr(12, 0);
+        vector<int> fr(12, 0); //count of strings with frequency i
         int f;
         vector<int> q;
         for(int i = 0; i < words.size(); i++){
@@ -45,7 +45,7 @@ public:
         
         for(int i = 0; i < queries.size(); i++){
             f = getF(queries[i]);
-            q.push_back(fr[f+1]);
+            q.push_back(fr[f+1]);  //count of words with frequency fr+1 or greater
         }
         return q;
     }
