@@ -12,7 +12,7 @@ public:
                 if(num[l]==0) del--;
                 l++;
             }
-            res = max(res,r-l+1-del);
+            res = max(res,r-l);
             r++;
         }
         
