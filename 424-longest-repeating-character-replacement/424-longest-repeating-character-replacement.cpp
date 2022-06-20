@@ -11,7 +11,7 @@ public:
             map[s[r]]++;
             maxcnt=max(maxcnt,map[s[r]]);
             
-            while(r-l+1-maxcnt>k){
+            while(r-l+1>k+maxcnt){
                 map[s[l]]--;
                 l++;
             }
