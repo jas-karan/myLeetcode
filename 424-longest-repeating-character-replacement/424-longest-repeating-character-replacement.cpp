@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //in any window, there will be max freq char and other k chars
     int characterReplacement(string s, int k) {
         int n = s.length();
         
