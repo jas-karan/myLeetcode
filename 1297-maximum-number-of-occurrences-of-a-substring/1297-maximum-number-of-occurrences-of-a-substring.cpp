@@ -7,7 +7,7 @@ public:
         for(int i=0;i<s.length();i++)			//Sliding window
         {
             count[s[i]]++;						//Increase the count of letter at i.
-            if(i-start+1>minSize)                  //Reduce the size of the window if increased to size.
+            if(i>=minSize)                  //Reduce the size of the window if increased to size.
             {
                 if(--count[s[start]]==0)			//Remove the letter from map if count 0 to track unique letters.
                     count.erase(s[start]);
