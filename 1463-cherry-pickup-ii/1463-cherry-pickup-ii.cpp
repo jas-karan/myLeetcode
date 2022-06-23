@@ -1,35 +1,32 @@
 class Solution {
-private:
-    int n;
-    int m;
-    int dp[72][72][72];
+public:
+    int m,n;
+    int memo[72][72][72];
     vector<int> dir={-1,1,0};
     
-public:
-    int dfs(vector<vector<int>>& grid,int r,int i,int j)
-    {
-        if(r<0 || r>=n || i<0 || i>=m || j<0 || j>=m)return INT_MIN;
-        if(dp[r][i][j]!=-1)return dp[r][i][j];
-        int res=0;
-        res=(i==j)?grid[r][j]:grid[r][i]+grid[r][j]; 
-         int temp=0;
-         for(int k=0;k<3;k++)
+    int dfs(vector<vector<int>>&grid,int r,int c1,int c2){
+        if(r==m || c1<0 || c1>=n || c2<0 || c2>=n) return INT_MIN;
+        
+        if(memo[r][c1][c2]!=-1) return memo[r][c1][c2];
+        
+        int ans = grid[r][c1];
+        if(c1!=c2) ans+=grid[r][c2];
+        
+        int t=0;
+        for(int i=0;i<3;i++)
          {
-            for(int t=0;t<3;t++)
+            for(int j=0;j<3;j++)
             {
-                temp = max(temp, dfs(grid,r+1, i + dir[k], j+dir[t]));
+                t = max(t, dfs(grid,r+1, c1 + dir[i], c2+dir[j]));
             }
          }
-         
-        return dp[r][i][j]=res+temp;
         
-        
+        return memo[r][c1][c2]=ans+t;
     }
+    
     int cherryPickup(vector<vector<int>>& grid) {
-        n=grid.size();
-        m=grid[0].size();
-        memset(dp,-1,sizeof(dp));
-        return dfs(grid,0,0,m-1);
-        
+        m = grid.size(),n=grid[0].size();
+        memset(memo,-1,sizeof(memo));
+        return dfs(grid,0,0,n-1);
     }
 };
