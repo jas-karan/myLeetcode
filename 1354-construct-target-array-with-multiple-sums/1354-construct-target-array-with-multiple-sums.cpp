@@ -16,7 +16,7 @@ public:
             if (new_ == 1 || rest == 1)
                 return true;
             
-            if (new_ < rest || rest == 0 || new_ % rest == 0)
+            if (new_ <= rest || rest == 0 || new_ % rest == 0)
                 return false;
             
             
