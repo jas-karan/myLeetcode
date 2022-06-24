@@ -11,7 +11,7 @@ public:
             long new_ = pq.top(); pq.pop();
             long rest = total-new_;
             
-            //rest+old=new  => total<new
+            //rest+old=new  => rest<new
             
             if (new_ == 1 || rest == 1)
                 return true;
