@@ -1,21 +1,32 @@
 class Solution {
 public:
-    bool isPossible(vector<int>& target) {
-        priority_queue<int> pq;
-        long long sum = 0;
-        for(auto num : target){
-            pq.push(num);
-            sum+=num;
+    bool isPossible(vector<int>& A) {
+        long total = 0;
+        int n = A.size();
+        priority_queue<int> pq(A.begin(), A.end());
+        for (int a : A)
+            total += a;
+        
+        while (true) {
+            long new_ = pq.top(); pq.pop();
+            long rest = total-new_;
+            
+            //rest+old=new  => total<new
+            
+            if (new_ == 1 || rest == 1)
+                return true;
+            
+            if (new_ < rest || rest == 0 || new_ % rest == 0)
+                return false;
+            
+            
+            long old_ = new_ % rest;
+            
+            total-=new_;
+            total+=old_;
+            pq.push(old_);
         }
-        while(pq.top() != 1){
-            sum -= pq.top();
-            if(sum == 0 || sum >= pq.top()) return false;
-            int old = pq.top()%sum;
-            if(sum != 1 && old == 0) return false;
-            pq.pop();
-            pq.push(old);
-            sum += (old);
-        }
+        
         return true;
     }
 };
