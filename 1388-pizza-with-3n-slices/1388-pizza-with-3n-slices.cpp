@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //house-robbers-2 with n=n/3
     int dp[501][170];
     int get(int i,int n,vector<int>& slices)
     {
