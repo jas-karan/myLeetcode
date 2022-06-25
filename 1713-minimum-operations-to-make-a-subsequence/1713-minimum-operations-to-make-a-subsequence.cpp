@@ -4,7 +4,7 @@ public:
         //longest common subsequence = TLE
         //LCS to LIS (by indices)
         //[6,4,8,1,3,2] -> [0,1,2,3,4,5]
-        //[4,7,6,2,3,8,6,1] -> [1,-1,0,5,4,2,0,3]   here lis=0,2,3
+        //[4,7,6,2,3,8,6,1] -> [1,-1,0,5,4,2,0,3]   here lis=0,2,3 (ignore -1s)
         
         unordered_map<int, int> m;
         
