@@ -8,8 +8,8 @@ public:
         instructions+=instructions+instructions+instructions;
         
         for(char c:instructions){
-            if(c=='L') d=(d-1+4)%4;
-            else if(c=='R') d=(d+1)%4;
+            if(c=='L') d=(d-1+4)%4;  //anticlock
+            else if(c=='R') d=(d+1)%4;  //clock
             else{
                 x+=dir[d][0];
                 y+=dir[d][1];
