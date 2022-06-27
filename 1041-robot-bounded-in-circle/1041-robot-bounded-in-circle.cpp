@@ -1,20 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>>dir{{0,1},{0,-1},{-1,0},{1,0}};
-    
-    int left(int d){
-        if (d == 0) return 2;
-        if (d == 2) return 1;
-        if (d == 1) return 3;
-        return 0;
-    }
-    
-    int right(int d){
-        if (d == 0) return 3;
-        if (d == 3) return 1;
-        if (d == 1) return 2;
-        return 0;
-    }
+    vector<vector<int>>dir{{0,1},{-1,0},{0,-1},{1,0}};
     
     bool isRobotBounded(string instructions) {
         int x=0,y=0,d=0;
@@ -22,8 +8,8 @@ public:
         instructions+=instructions+instructions+instructions;
         
         for(char c:instructions){
-            if(c=='L') d=left(d);
-            else if(c=='R') d=right(d);
+            if(c=='L') d=(d-1+4)%4;
+            else if(c=='R') d=(d+1)%4;
             else{
                 x+=dir[d][0];
                 y+=dir[d][1];
