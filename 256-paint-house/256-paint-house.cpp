@@ -7,11 +7,11 @@ public:
                 
                 for(int k=0;k<3;k++){
                     if(k!=j){
-                        curr=min(curr,costs[i][j]+costs[i-1][k]);
+                        curr=min(curr,costs[i-1][k]);
                     }
                 }
                 
-                costs[i][j]=curr;
+                costs[i][j]+=curr;
             }
         }
         
