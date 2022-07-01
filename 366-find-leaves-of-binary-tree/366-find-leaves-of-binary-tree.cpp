@@ -11,29 +11,21 @@
  */
 class Solution {
 public:
-    vector<int>leaves;
-    void find(TreeNode*root){
-        if(root->left && root->left->left==NULL && root->left->right==NULL){
-            leaves.push_back(root->left->val);
-            root->left=NULL;
-        }
-        if(root->left) find(root->left);
-        if(root->right && root->right->left==NULL && root->right->right==NULL){
-            leaves.push_back(root->right->val);
-            root->right=NULL;
-        }
-        if(root->right) find(root->right);
+    vector<vector<int>>res;
+    
+    int dfs(TreeNode* root){
+        if(root==NULL) return 0;
+        
+        int height = max(dfs(root->left), dfs(root->right))+1;
+        
+        if(height>res.size()) res.push_back({});
+        res[height-1].push_back(root->val);
+        
+        return height;
     }
     
     vector<vector<int>> findLeaves(TreeNode* root) {
-        vector<vector<int>>res;
-        
-        while(root->left||root->right){
-            leaves.clear();
-            find(root);
-            res.push_back(leaves);
-        }
-        res.push_back({root->val});
+        dfs(root);
         return res;
     }
 };
