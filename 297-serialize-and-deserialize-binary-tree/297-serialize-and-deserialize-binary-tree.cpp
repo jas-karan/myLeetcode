@@ -10,76 +10,38 @@
 class Codec {
 public:
 
-    void code(TreeNode*root, string &ser){
-
-        ser+=to_string(root->val);
-        
-        if(root->left){
-            ser+='L';
-            code(root->left,ser);
-        }
-        else{
-            ser+='X';
-        }
-        if(root->right){
-            ser+='R';
-            code(root->right,ser);
-        }
-        else{
-            ser+='X';
-        }
-        
-    }
-    
     string serialize(TreeNode* root) {
-        string ser = "";
-        if(!root) return ser;
-        code(root,ser);
-        cout<<ser;
+        if(!root) return "X";
+        string ser=to_string(root->val);
+        
+        ser+=","+serialize(root->left);
+        ser+=","+serialize(root->right);
+        
         return ser;
     }
 
     
-    TreeNode* decode(string&data){
-        int i=0;
-        int val=0;
-        bool neg=false;
-        if(data[i]=='-'){neg=true; i++;}
-        while(data[i]>='0'&&data[i]<='9'){
-            val=val*10+(data[i]-'0');
-            i++;
+    TreeNode* decode(string &data){
+        if(data[0]=='X'){
+            if(data.length()>1) data=data.substr(2);
+            return NULL;
         }
-        TreeNode*root = new TreeNode(0);
-        if(neg) val*=-1;
-        root->val=val;
-        data=data.substr(i);
-        
-        if(data[0]=='L'){
-            data=data.substr(1);
-            root->left = decode(data);
-        }
-        else{
-            data=data.substr(1);
-            root->left=NULL;
-        }
-        if(data[0]=='R'){
-            data=data.substr(1);
-            root->right=decode(data);
-        }
-        else{
-            data=data.substr(1);
-            root->right=NULL;
-        }
-        
+        int val = helper(data);
+        TreeNode*root=new TreeNode(val);
+        root->left=decode(data);
+        root->right=decode(data);
         return root;
-        
     }
     
     TreeNode* deserialize(string data) {
-        if(data=="") return NULL;
-        TreeNode*root = decode(data);
-        return root;
-        
+        return decode(data);
+    }
+    
+    int helper(string&data){
+        int comma = data.find(',');
+        int val = stoi(data.substr(0,comma));
+        data=data.substr(comma+1);
+        return val;
     }
 };
 
