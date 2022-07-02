@@ -19,7 +19,7 @@ public:
         int l = dfs(node->left);
         int r = dfs(node->right);
         
-        ans += abs(l)+abs(r);  //to or from via this node
+        ans += abs(l)+abs(r);  //to or from via this node (ensures minimum)
         
         return l+r+node->val-1;
         
