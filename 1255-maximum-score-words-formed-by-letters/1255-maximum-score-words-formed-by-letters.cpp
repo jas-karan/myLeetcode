@@ -6,7 +6,6 @@ public:
         int a = call(i+1,words,mp,score);
         
         int curr = 0;
-        vector<int>temp=mp;
         
         bool flag=true;
         for(char c:words[i]){
