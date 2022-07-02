@@ -11,8 +11,9 @@
  */
 class Solution {
 public:
-    vector<int> closestKValues(TreeNode* root, double target, int k) {
-        priority_queue<pair<double,int>>pq;
+    vector<int> closestKValues(TreeNode* root, double target, int K) {
+        //sliding window -> deque
+        deque<int>dq;
         
         stack<TreeNode*>st;
         TreeNode*curr=root;
@@ -23,15 +24,23 @@ public:
                 curr=curr->left;
             }
             curr=st.top(); st.pop();
-            pq.push({abs(curr->val-target),curr->val});
-            if(pq.size()>k) pq.pop();
+           
+            if(dq.size()==K){
+                if(abs(dq.front()-target)>abs(curr->val-target)){
+                dq.pop_front();
+                dq.push_back(curr->val);
+                }
+                else break;
+            }
+            else dq.push_back(curr->val);
+            
             curr=curr->right;
         }
         
         vector<int>res;
-        while(!pq.empty()){
-            int val = pq.top().second;
-            pq.pop();
+        while(!dq.empty()){
+            int val = dq.front();
+            dq.pop_front();
             res.push_back(val);
         }
         
