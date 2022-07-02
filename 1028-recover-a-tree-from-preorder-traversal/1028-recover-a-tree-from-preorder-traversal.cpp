@@ -29,13 +29,15 @@ public:
     TreeNode* dfs(string&s,int level){
         int v = val(s);
         TreeNode* root = new TreeNode(v);
+        
         int next = nextlevel(s);
         if(next==level+1){
             s=s.substr(next);
             root->left=dfs(s,next);
         }
         else root->left=NULL;
-        next=nextlevel(s);
+        
+        next = nextlevel(s);
         if(next==level+1){
             s=s.substr(next);
             root->right=dfs(s,next);
