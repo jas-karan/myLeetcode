@@ -16,6 +16,7 @@ public:
         }
         
         //for small strings, H<V
+        //go left until we have atleast k strings or we reach last col
         
         int i=0,j=0;
         string ans="";
