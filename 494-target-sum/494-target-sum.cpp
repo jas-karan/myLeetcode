@@ -9,7 +9,11 @@ public:
             return 0;
         }
         
-        return dfs(nums,i+1,sum+nums[i])+dfs(nums,i+1,sum-nums[i]);
+        string s = to_string(i)+'#'+to_string(sum);
+        
+        if(dp.find(s)!=dp.end()) return dp[s];
+        
+        return dp[s]= dfs(nums,i+1,sum+nums[i])+dfs(nums,i+1,sum-nums[i]);
         
     }
     
