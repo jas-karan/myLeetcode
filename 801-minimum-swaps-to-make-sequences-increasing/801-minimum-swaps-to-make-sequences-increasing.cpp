@@ -1,58 +1,27 @@
 class Solution {
 public:
-//     vector<vector<int>> dp;
-    
-//     int solve(vector<int> &num1,vector<int> &num2,int i,int prev1,int prev2,bool swaped){
-//         int n = num1.size();
-//         if(i == n){
-//             return 0;
-//         }
-        
-//         if(dp[i][swaped] != -1){
-//             return dp[i][swaped];
-//         }
-        
-//         int noSwap=1e9;
-//         if(num1[i]>prev1 && num2[i]>prev2){
-//             noSwap = solve(num1,num2,i+1,num1[i],num2[i],false);
-//         }
-        
-//         int swap=1e9;
-//         if(num1[i]>prev2 && num2[i]>prev1){
-//             swap = 1 + solve(num1,num2,i+1,num2[i],num1[i],true);
-//         }
-        
-//         return dp[i][swaped] = min(swap,noSwap);
-//     }
-    
-    
     int minSwap(vector<int>& nums1, vector<int>& nums2) {
-//         int n=nums1.size();
-//         dp.resize(n+1,vector<int> (2,-1));
+        int n =nums1.size();
         
-//         return solve(nums1,nums2,0,-1,-1,0);
+        vector<int>keep(n,0);
+        vector<int>swap(n,0);
+        swap[0]=1;
         
-        int n=nums1.size();
-	vector<int> swap(n, INT_MAX), keep(n, INT_MAX);
-
-	keep[0]=0;
-	swap[0]=1;
-
-	for(int i=1; i<n; i++) {
-		if(nums1[i]>nums1[i-1] && nums2[i]>nums2[i-1]) {
-            //if we want to keet at i, then we should not swap at i-1 either
-			keep[i]=keep[i-1];
-            //if we want to swap here, then should have swapped at i-1 too, otherwise disturb the order
-			swap[i]=swap[i-1]+1;
-		} 
-		if(nums1[i]>nums2[i-1] && nums2[i]>nums1[i-1]) {
-            //if you wanna keep then swap at i-1
-			keep[i]=min(swap[i-1],keep[i]);
-            //if you wanna swap then keep at i-1
-			swap[i]=min(keep[i-1]+1,swap[i]);
-		}
-	}
-
-	return min(keep[n-1],swap[n-1]);
+        for(int i=1;i<n;i++){
+            if(nums1[i]>nums1[i-1]&&nums1[i]>nums2[i-1]&&nums2[i]>nums2[i-1]&&nums2[i]>nums1[i-1]){
+                keep[i] = min(keep[i-1],swap[i-1]);
+                swap[i] = min(swap[i-1],keep[i-1])+1;
+            }
+            else if(nums1[i]>nums1[i-1]&&nums2[i]>nums2[i-1]){
+                keep[i]=keep[i-1];
+                swap[i]=swap[i-1]+1;
+            }
+            else{
+                keep[i]=swap[i-1];
+                swap[i]=keep[i-1]+1;
+            }
+        }
+        
+        return min(swap[n-1],keep[n-1]);
     }
 };
