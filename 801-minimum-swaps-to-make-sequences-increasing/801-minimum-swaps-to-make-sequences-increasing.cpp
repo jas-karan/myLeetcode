@@ -9,14 +9,17 @@ public:
         
         for(int i=1;i<n;i++){
             if(nums1[i]>nums1[i-1]&&nums1[i]>nums2[i-1]&&nums2[i]>nums2[i-1]&&nums2[i]>nums1[i-1]){
+                //you can either swap or keep ->choose min
                 keep[i] = min(keep[i-1],swap[i-1]);
                 swap[i] = min(swap[i-1],keep[i-1])+1;
             }
             else if(nums1[i]>nums1[i-1]&&nums2[i]>nums2[i-1]){
+                //you have to keep
                 keep[i]=keep[i-1];
                 swap[i]=swap[i-1]+1;
             }
             else{
+                //you have to swap
                 keep[i]=swap[i-1];
                 swap[i]=keep[i-1]+1;
             }
