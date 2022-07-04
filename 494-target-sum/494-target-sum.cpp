@@ -1,21 +1,21 @@
 class Solution {
 public:
-    int n,target,ans=0;
+    int n,target;
+    unordered_map<string,int>dp;
     
-    void dfs(vector<int>&nums,int i,int sum){
+    int dfs(vector<int>&nums,int i,int sum){
         if(i==n){
-            if(sum==target) ans++;
-            return;
+            if(sum==target) return 1;
+            return 0;
         }
         
-        dfs(nums,i+1,sum+nums[i]);
-        dfs(nums,i+1,sum-nums[i]);
+        return dfs(nums,i+1,sum+nums[i])+dfs(nums,i+1,sum-nums[i]);
+        
     }
     
     int findTargetSumWays(vector<int>& nums, int target) {
         n=nums.size();
         this->target=target;
-        dfs(nums,0,0);
-        return ans;
+        return dfs(nums,0,0);
     }
 };
