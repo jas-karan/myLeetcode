@@ -5,7 +5,7 @@ public:
     
     int he,wi,n;
     vector<int>masks;
-    int dp[101][513];
+    int dp[101][1024];
     
     void row_dfs(int w,vector<int>&bricks,int mask){
         if(w==wi){
@@ -13,7 +13,7 @@ public:
             return;
         }
         
-        if(w>0) mask |= (1<<(w-1));
+        if(w>0) mask |= (1<<(w));
         
         for(int b:bricks){
             if(w+b<=wi){
