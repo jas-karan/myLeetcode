@@ -39,6 +39,8 @@ public:
         for(int i=1;i<=n;i++){
             pipes.push_back({0,i,wells[i-1]});
         }
+        
+        //applying kruskal - choose an edge who connects two trees
         sort(pipes.begin(),pipes.end(),[](vector<int>&a,vector<int>&b){
             return a[2]<b[2];
         });
