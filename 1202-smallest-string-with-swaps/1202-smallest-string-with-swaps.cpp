@@ -1,45 +1,64 @@
+class UnionFind {
+private: vector<int>root;
+        
+public:
+    int cnt;
+    UnionFind(int size) {
+        cnt=size;
+        root = vector<int>(size);
+        for (int i = 0; i < size; i++) {
+            root[i] = i;
+        }
+    }
+
+    int find(int x) {
+        if (x == root[x]) {
+            return x;
+        }
+        return root[x] = find(root[x]);
+    }
+
+    bool union_(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if( rootX == rootY) return false;
+        root[rootY] = rootX;
+        cnt--;
+        return true;
+    }
+
+    bool connected(int x, int y) {
+        return find(x) == find(y);
+    }
+};
+
 class Solution {
 public:
-   // ----------Form components-----------------
-   // --indices in same component can be changed to each other---
-   // so sort chars at indices of same component.
-    
-    vector<int> indices;       //Stores indices of same component.
-    vector<bool> visited;
-    vector<vector<int>> adjList;
-    string indiceString;       //Stores string formed by indices in the same component.
-    
-    void dfs(string &s,int n)         
-    {
-        visited[n]=true;
-        indices.push_back(n);
-        indiceString+=s[n];
-        for(int &i:adjList[n])
-            if(!visited[i])
-               dfs(s,i);
+    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) {
+        UnionFind uf(s.length());
+        for(auto p:pairs){
+            uf.union_(p[0],p[1]);
+        }
         
-    }
-    
-    string smallestStringWithSwaps(string s, vector<vector<int>>& pairs) 
-    {
-        adjList.resize(s.length());
-        visited.resize(s.length(),false);
+        unordered_map<int,vector<int>>comp;
         
-        for(vector<int> &v:pairs)               //Create graph using the indice pairs
-            adjList[v[0]].push_back(v[1]),adjList[v[1]].push_back(v[0]);
+        for(int i=0;i<s.length();i++){
+            int root = uf.find(i);
+            comp[root].push_back(i);
+        }
         
-        for(int i=0;i<s.length();i++)
-            if(!visited[i])
-            {
-                indiceString="";                              
-                indices.clear();                             
-                dfs(s,i);
-                sort(indiceString.begin(),indiceString.end());  //Sort the chars in the same compo.
-                sort(indices.begin(),indices.end());  //Sort the indices in the same compo.
-                
-                for(int i=0;i<indices.size();i++)    //replace indices with sorted chars
-                    s[indices[i]]=indiceString[i];
+        for(auto c:comp){
+            vector<int>indices = c.second;
+            vector<int>chars;
+            for(int ind:indices){
+                chars.push_back(s[ind]);
             }
+            sort(begin(chars),end(chars));
+            for(int i=0;i<chars.size();i++){
+                s[indices[i]]=chars[i];
+            }
+        }
+        
         return s;
     }
 };
