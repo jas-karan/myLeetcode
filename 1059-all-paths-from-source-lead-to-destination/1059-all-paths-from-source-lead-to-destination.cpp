@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int vis[10001];
+    vector<int>vis;
     
     int dfs(vector<vector<int>>&gr,int src,int des){
         if(gr[src].size()==0) return src==des;
@@ -19,7 +19,7 @@ public:
         for(auto e:edges){
             gr[e[0]].push_back(e[1]);
         }
-        memset(vis,-1,sizeof(vis));
+        vis=vector<int>(n,-1);
         return dfs(gr,source,destination);
     }
 };
