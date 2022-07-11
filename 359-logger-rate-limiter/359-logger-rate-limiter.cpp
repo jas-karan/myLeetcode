@@ -1,16 +1,32 @@
+class Log {
+public:
+    string msg;
+    int time;
+    
+    Log(string s,int t){
+        msg=s;
+        time=t;
+    }
+};
+
 class Logger {
 public:
-    unordered_map<string,int>time;
+    deque<Log>window;
+    set<string>set;
     
     Logger() {}
     
     bool shouldPrintMessage(int timestamp, string message) {
-        if(time.find(message)!=time.end() && timestamp-time[message]<10) 
-            return false;
-        else{
-            time[message]=timestamp;
-            return true;
+        while(!window.empty() && timestamp-window.front().time>=10){
+            string s = window.front().msg;
+            window.pop_front();
+            set.erase(s);
         }
+        if(set.find(message)!=set.end()) return false;
+        Log l =  Log(message,timestamp);
+        window.push_back(l);
+        set.insert(message);
+        return true;
     }
 };
 
