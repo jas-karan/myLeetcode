@@ -26,11 +26,12 @@ public:
             }
         }
         
-        int pre = map.begin()->first;
+        int pre = INT_MIN;
         
         for(auto [s,e]:map){
             if(pre<s){
-                ans.push_back(Interval(pre,s));
+                if(pre!=INT_MIN)
+                    ans.push_back(Interval(pre,s));
             }
             pre = max(pre,e);
         }
