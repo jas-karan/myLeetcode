@@ -4,7 +4,7 @@ public:
     unordered_map<int,bool>memo;
     
     bool dfs(vector<int>&nums,int ind,int k,int curr,int tar,int mask){
-        if(k==1) return true;
+        if(k==0) return true;
         
         if(curr>tar) return false;
         
