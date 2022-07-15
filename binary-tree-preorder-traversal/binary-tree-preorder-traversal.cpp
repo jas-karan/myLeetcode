@@ -26,18 +26,14 @@ public:
         
         vector<int>ans;
         stack<TreeNode*>st;
-        TreeNode*cur=root;
-        
-        while(cur||!st.empty()){
-            while(cur){
-                ans.push_back(cur->val);
-                if(cur->right) st.push(cur->right);
-                cur=cur->left;
-            }
-            if(st.size()){
-                cur=st.top();
-                st.pop();
-            }
+        if(root) st.push(root);
+        TreeNode*cur;
+        while(st.size()){
+            cur=st.top();
+            st.pop();
+            ans.push_back(cur->val);
+            if(cur->right) st.push(cur->right);
+            if(cur->left) st.push(cur->left);
         }
         
         return ans;
