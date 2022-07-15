@@ -4,6 +4,7 @@ public:
         int n=a.size();
         int i=0;
         priority_queue<int, vector<int>, greater<int>> pq;
+        //min heap -> use bricks for the least jumps
         for(i=0;i<n-1;i++)
         {
             if(a[i]<a[i+1])
