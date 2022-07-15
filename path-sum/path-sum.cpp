@@ -11,18 +11,18 @@
  */
 class Solution {
 public:
-    unordered_set<int>sums;
-    
-    void dfs(TreeNode*root,int cur){
+    int X;
+    bool dfs(TreeNode*root,int cur){
+        if(!root) return false;
         cur+=root->val;
-        if(!root->left && !root->right) sums.insert(cur);
-        if(root->left) dfs(root->left,cur);
-        if(root->right) dfs(root->right,cur);
+        if(!root->left && !root->right) return cur==X;
+        
+        return dfs(root->left,cur)||dfs(root->right,cur);
+        
     }
     
     bool hasPathSum(TreeNode* root, int targetSum) {
-        if(root) dfs(root,0);
-        return sums.find(targetSum)!=sums.end();
-        
+        X=targetSum;
+        return dfs(root,0);
     }
 };
