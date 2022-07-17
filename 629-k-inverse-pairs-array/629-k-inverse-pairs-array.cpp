@@ -10,7 +10,6 @@ public:
                 dp[i][j] = (dp[i][j-1] + dp[i-1][j]) % mod;
                 if(j - i >= 0){
                     dp[i][j] = (dp[i][j] - dp[i-1][j-i] + mod) % mod; 
-                    //It must + mod, If you don't know why, you can check the case 1000, 1000
                 }
             }
         }
