@@ -4,8 +4,8 @@ public:
         long long ans=0;
         while(i<s.length()&& s[i]>='0'&&s[i]<='9'){
             ans=ans*10+(s[i]-'0');
-            if(ans>INT_MAX && sign==1){ ans=INT_MAX; break;}
-            if(sign==-1 && ans*-1<INT_MIN){ ans=INT_MIN; break;}
+            if(ans>INT_MAX && sign==1){ return INT_MAX;}
+            if(sign==-1 && ans*-1<INT_MIN){ return INT_MIN;}
             i++;
         }
         ans*=sign;
