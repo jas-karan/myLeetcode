@@ -1,3 +1,4 @@
+//see range sum query immutable and mutable for BIT(binary indexed tree)
 class Solution {
 public:
     int size = 2*1e4+2;
