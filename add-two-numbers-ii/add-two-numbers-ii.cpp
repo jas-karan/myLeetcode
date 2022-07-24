@@ -10,40 +10,43 @@
  */
 class Solution {
 public:
+    ListNode* add(ListNode*l1, ListNode*l2,int&carry){
+        if(!l1) return NULL;
+        
+        ListNode* node = add(l1->next,l2->next,carry);
+        ListNode*cur = new ListNode();
+        cur->next=node;
+        cur->val = (carry+l1->val+l2->val)%10;
+        carry = (carry+l1->val+l2->val)/10;
+        
+        return cur;
+    }
+    
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        stack<ListNode*>s1,s2,s3;
-        ListNode*dummy=new ListNode();
-        ListNode*prev=dummy;
+        ListNode*p1=l1,*p2=l2;
         
-        while(l1||l2){
-            if(l1){
-                s1.push(l1);
-                l1=l1->next;
+        while(p1||p2){
+            if(!p1){
+                ListNode*node=new ListNode(0);
+                node->next = l1;
+                l1=node;
+                p2=p2->next;
             }
-            if(l2){
-                s2.push(l2);
-                l2=l2->next;
+            else if(!p2){
+                ListNode*node=new ListNode(0);
+                node->next = l2;
+                l2=node;
+                p1=p1->next;
             }
-            ListNode*node = new ListNode();
-            prev->next=node;
-            prev=node;
-            s3.push(node);
+            else{
+                p1=p1->next;
+                p2=p2->next;
+            }
         }
-        
         int carry=0;
-        while(!s1.empty() || !s2.empty()){
-            int sum=carry;
-            if(s1.size()){sum+=s1.top()->val; s1.pop();}
-            if(s2.size()){sum+=s2.top()->val; s2.pop();}
-            
-            s3.top()->val = sum%10;
-            carry = sum/10;
-            s3.pop();
-        }
-        
-        ListNode*head=dummy->next;
+        ListNode* head = add(l1,l2,carry);
         if(carry){
-            ListNode*node = new ListNode(carry);
+            ListNode* node = new ListNode(carry);
             node->next=head;
             head=node;
         }
