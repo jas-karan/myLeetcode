@@ -1,36 +1,33 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
+        int n = num.length();
         
-        if(num.length()==k)return "0";
-        // get all eligible elements in a stack
-	    stack<char> s;
+        if(n<=k) return "0";
         
-        for(char c:num){
-            
-            while(k && !s.empty() && int(s.top())>int(c)){
-                s.pop();
-                k--;
-            } 
-            s.push(c);
-        } 
+        stack<char>st;
         
-        //if still no change in k then remove k elements
-        if(k){
-            while(k--) s.pop();
+        for(int i=0;i<n;i++){
+            while(k && st.size()>0 && st.top()>num[i]){ st.pop(); k--;}
+            st.push(num[i]);
         }
         
-        //reverse the stack so that first digit is at top
-        stack<char> t;
-        while(!s.empty()){t.push(s.top());s.pop();}
+        while(k && st.size()){st.pop(); k--;}
         
-        // remove leading 0s ,if present
-        while(t.top()=='0'&&t.size()!=1)t.pop();
+        string s = "";
         
-        //return the answer
-        num="";
-        while(!t.empty()){num.push_back(t.top());t.pop();}
+        while(st.size()){
+            s.push_back(st.top());
+            st.pop();
+        }
         
-        return num;
+        int i=s.length()-1;
+        while(i>=0 && s[i]=='0'){
+            s.pop_back();
+            i--;
+        }
+        
+        reverse(begin(s),end(s));
+        return s==""?"0":s;
     }
 };
