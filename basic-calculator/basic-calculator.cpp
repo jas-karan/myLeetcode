@@ -28,6 +28,7 @@ public:
                 st.pop();
             }
             else if(s[i]=='-') sign=-1;
+            else if(s[i]=='+') sign=1;
         }
         
         return sum;
