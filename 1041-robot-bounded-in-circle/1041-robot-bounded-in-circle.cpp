@@ -1,23 +1,21 @@
 class Solution {
 public:
-    vector<vector<int>>dir{{0,1},{-1,0},{0,-1},{1,0}};
-    
-    bool isRobotBounded(string instructions) {
-        int x=0,y=0,d=0;
-        
-        instructions+=instructions+instructions+instructions;
-        
-        for(char c:instructions){
-            if(c=='L') d=(d-1+4)%4;  //anticlock
-            else if(c=='R') d=(d+1)%4;  //clock
-            else{
-                x+=dir[d][0];
-                y+=dir[d][1];
+    int dir[4][2] = {{0,1},{1,0},{0,-1},{-1,0}};
+    bool isRobotBounded(string s) {
+        int d = 0;
+        int x = 0;
+        int y = 0;
+        for(int i=0;i<4;i++){
+            for(int j=0;j<s.length();j++){
+                if(s[j]=='G'){
+                    x+=dir[d][0];
+                    y+=dir[d][1];
+                }
+                else if(s[j]=='L') d=(d-1+4)%4;
+                else d = (d+1)%4;
             }
-            
         }
         
-        if(x==0&&y==0) return true;
-        return false;
+        return x==0&&y==0;
     }
 };
