@@ -1,17 +1,13 @@
 class MyCalendar {
 public:
-    set<pair<int,int>>s; //sorted by end time ********* {end,start} **********
-    
+    set<pair<int,int>>bookings;
     MyCalendar() {}
     
     bool book(int start, int end) {
-        //if there is some event that ends after curr event starts
-        auto next = s.upper_bound({start,start});
+        auto itr = bookings.lower_bound({start,end});
+        if(itr!=bookings.end() && itr->second<end) return false;
         
-        //and that starts before curr event ends (or starts) then it is not possible
-        if(next!=s.end() && (*next).second<end) return false;
-        
-        s.insert({end,start});
+        bookings.insert({end,start});
         return true;
     }
 };
