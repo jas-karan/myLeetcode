@@ -26,7 +26,7 @@ public:
             level->right->next = level->next? level->next->left: NULL;
             level = level->next;
         }
-        if(root) root->left = connect(root->left);
+        if(root) connect(root->left);
         return root;
     }
 };
