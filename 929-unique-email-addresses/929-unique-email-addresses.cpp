@@ -1,24 +1,30 @@
 class Solution {
 public:
     int numUniqueEmails(vector<string>& emails) {
-        unordered_set<string>set;
+        unordered_set<string>valid;
         
         for(string e:emails){
-            string s = "";
-            int i;
-            bool plus = false;
-            for(i=0;i<e.length();i++){
-                if(e[i]=='@') break;
-                if(e[i]=='+'){
-                    plus=true;
-                }
-                if(plus) continue;
-                if(e[i]!='.') s+=e[i];
+            
+            int i=0;
+            string newEmail = "";
+            
+            for(int i=0;i<e.length();i++){
+                char c= e[i];
+                if(c=='+' ||c=='@') break;
+                if(c=='.') continue;   
+                newEmail+=c;
             }
-            s+=e.substr(i);
-            set.insert(s);
+            
+            while(e[i]!='@') i++;
+            
+            while(i<e.length()){
+                newEmail+=e[i];
+                i++;
+            }
+            
+            valid.insert(newEmail);
         }
         
-        return set.size();
+        return valid.size();
     }
 };
