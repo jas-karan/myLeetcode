@@ -1,36 +1,34 @@
 class Solution {
 public:
-    int curr=0;
-    int m,n;
-    int dir[4][2]={{0,1},{1,0},{0,-1},{-1,0}};
+    int dir[4][2] = {{-1,0},{0,-1},{1,0},{0,1}};
     
-    void dfs(int i,int j,vector<vector<int>>& grid){
-        if(i<0||j<0||i>=m||j>=n||grid[i][j]==0) return ;
+    void island(vector<vector<int>>&grid,int i,int j,int m,int n,int&area){
+        if(i<0 || j<0 || i>=m || j>=n || grid[i][j]==0) return ;
         
+        area++;
         grid[i][j]=0;
-        curr++;
         
-        for(int k=0;k<4;k++){
-            dfs(i+dir[k][0],j+dir[k][1],grid);
+        for(int d=0;d<4;d++){
+            island(grid, i+dir[d][0], j+dir[d][1], m,n,area);
         }
         
     }
     
     int maxAreaOfIsland(vector<vector<int>>& grid) {
-        int ans=0;
-        m=grid.size();
-        n=grid[0].size();
+        int area = 0;
+        int m = grid.size();
+        int n = grid[0].size();
         
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(grid[i][j]==1){
-                    dfs(i,j,grid);
-                    ans=max(ans,curr);
-                    curr=0;
+                    int currArea=0;
+                    island(grid,i,j,m,n,currArea);
+                    area = max(area, currArea);
                 }
             }
         }
         
-        return ans;
+        return area;
     }
 };
