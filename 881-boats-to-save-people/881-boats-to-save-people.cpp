@@ -5,19 +5,23 @@ public:
         
         sort(people.begin(), people.end());
         
-        int cnt=0;
-        
-        //only 2 person can be taken on boat!
-        //take lightest and heaviest together or heaviest goes alone
-        int i=0,j=n-1;
-        
-        while(i<=j){
-            cnt++;
-            
-            if(people[i]+people[j]<=limit) i++;
-            
-            j--;
+        int l=0,r=n-1,boats=0;
+        while(l<=r){
+            if(l==r){
+                boats++;
+                break;
+            }
+            if(people[l]+people[r]>limit){
+                boats++;
+                r--;
+            }
+            else{
+                boats++;
+                l++;
+                r--;
+            }
         }
-        return cnt;
+        
+        return boats;
     }
 };
