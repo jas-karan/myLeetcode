@@ -1,14 +1,12 @@
 class Solution {
 public:
-    string decodeString(string s) {
-        int i=0;
+    string decode(string s,int &i){
         string ans="";
         
-        while(i<s.length()){
+        while(i<s.length() && s[i]!=']'){
             if(isalpha(s[i])){
                 ans+=s[i];
                 i++;
-                continue;
             }
             else{
                 int t=0;
@@ -16,21 +14,10 @@ public:
                     t=t*10+(s[i]-'0');
                     i++;
                 }
-                string inside = "";
-                i++;
-                int open=0;
-                while(!(s[i]==']'&&open==0)){
-                    if(s[i]=='['){
-                        open++;
-                    }
-                    if(s[i]==']'){
-                        open--;
-                    }
-                    inside+=s[i];
-                    i++;
-                }
-                i++;
-                inside = decodeString(inside);
+                i++; //'['
+                string inside = decode(s,i);
+                i++; //']'
+                
                 while(t--){
                     ans+=inside;
                 }
@@ -38,5 +25,11 @@ public:
         }
         
         return ans;
+    }
+    
+    string decodeString(string s) {
+        int i=0;
+        s = decode(s,i);
+        return s;
     }
 };
