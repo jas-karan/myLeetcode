@@ -1,23 +1,20 @@
 class Solution {
 public:
-    int maxArea(vector<int>&h) {
-        //here we are finding container with max water
-        //in trapping rain water, we find total water that can be collected over bars
+    int maxArea(vector<int>& height) {
+        int n = height.size();
+        int l=0,r=n-1;
         
-        
-        int ans = 0;
-        int i=0,j=h.size()-1;
-        
-        while(i<j){
-            int ht = h[i]<=h[j] ? h[i]:h[j];
-            
-            int curr = (j-i)*ht;
-            
-            while(i<j && h[i]<=ht) i++;  //move to next greater left line
-            //why not smaller - (j-i) will decrease and ht will also decrease so that will not optimise
-            
-            while(i<j && h[j]<=ht) j--;  //move to next greatr right line
-            ans = max(ans,curr);
+        int ans=0;
+        while(l<r){
+            ans=max(ans,min(height[l],height[r])*(r-l));
+            if(height[l]<=height[r]){
+                int h = height[l];
+                while(l<r && height[l]<=h) l++;
+            }
+            else{
+                int h = height[r];
+                while(l<r && height[r]<=h) r--;
+            }
         }
         
         return ans;
