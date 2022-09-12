@@ -1,23 +1,23 @@
 class Solution {
 public:
-    vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        vector<vector<int>>merged;
+    vector<vector<int>> merge(vector<vector<int>>& I) {
+        int n = I.size();
+        sort(begin(I),end(I));
+        auto prev = I[0];
         
-        sort(intervals.begin(), intervals.end());
-        vector<int> curr = intervals[0];
+        vector<vector<int>>ans;
         
-        for(int i=1;i<intervals.size();i++){
-            if(curr[1]>=intervals[i][0]){
-                curr[1] = max(curr[1], intervals[i][1]);
+        for(int i=1;i<n;i++){
+            if(I[i][0]<=prev[1]){
+                prev[1] = max(prev[1], I[i][1]);
             }
             else{
-                merged.push_back(curr);
-                curr=intervals[i];
+                ans.push_back(prev);
+                prev = I[i];
             }
         }
+        ans.push_back(prev);
         
-        merged.push_back(curr);
-        
-        return merged;
+        return ans;
     }
 };
