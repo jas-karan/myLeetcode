@@ -1,27 +1,21 @@
 class Solution {
 public:
-    unordered_map<string,priority_queue<string, vector<string>, greater<string>>>mp;
-    vector<string>ans;
+    //priority_queue<string,vector<string>,greater<string>> => min heap
+    unordered_map<string,priority_queue<string,vector<string>,greater<string>>>paths;
     
-    void dfs(string src){
-        
-        while(mp[src].size()>0){
-            string nbd = mp[src].top();
-            mp[src].pop();
-            dfs(nbd);
+    vector<string>ans;
+    void dfs(string from){
+        while(paths[from].size()){
+            string to = paths[from].top();
+            paths[from].pop();
+            dfs(to);
         }
-        
-        ans.push_back(src); //dest node will be first node in ans array
+        ans.push_back(from);
     }
     
     vector<string> findItinerary(vector<vector<string>>& tickets) {
-        //every edge has to be visited exactly once
-        //eulerian path
-        //here vertex can be visited again if multiple paths from that vertex
-        //so here we mark edges as visited or we can simply remove the edges
-        
         for(auto t:tickets){
-            mp[t[0]].push(t[1]);
+            paths[t[0]].push(t[1]);
         }
         
         dfs("JFK");
