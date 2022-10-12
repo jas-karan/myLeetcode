@@ -1,9 +1,5 @@
 class Solution {
 public:
-    bool check(string s,int i,int j){
-        while(i<j) if(s[i++]!=s[j--]) return false;
-        return true;
-    }
     
     int dfs(string s,int ind,vector<int>&dp,vector<vector<bool>>&mem){
         
